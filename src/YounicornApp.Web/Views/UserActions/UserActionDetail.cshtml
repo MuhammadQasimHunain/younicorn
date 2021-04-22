@@ -1,0 +1,41 @@
+﻿@model YounicornApp.Web.ApiModels.UserActionDTO
+@{
+    Layout = "";
+    var userAddress = Model.UserAddress.Length > 0 ? Model.UserAddress : "---";
+    var actionType = Model.ActionType.Length > 0 ? Model.ActionType : "---";
+    var actionDetails = Model.ActionDetails.Length > 0 ? Model.ActionDetails : "---";
+    var iSPDetail = Model.ISPDetail.Length > 0 ? Model.ISPDetail : "---";
+    var iSPOfferDetail = Model.ISPOfferDetail.Length > 0 ? Model.ISPOfferDetail : "---";
+}
+
+@Html.HiddenFor(a => a.ActionId)
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <form>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <p>User Address</p>
+                        <p>Action Type</p>
+                        <p>Action Time</p>
+                        <p>Action Details</p>
+                        <p>Isp Name</p>
+                        <p>Offer Display Name</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p>@userAddress</p>
+                        <p>@actionType</p>
+                        <p>@Model.ActionDatetime.ToShortDateString()</p>
+                        <p>@actionDetails</p>
+                        <p>@iSPDetail</p>
+                        <p>@iSPOfferDetail</p>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" value="Delete" class="btn btn-primary px-4 float-right btn-dark-tangerine btn-rounded">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

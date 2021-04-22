@@ -1,0 +1,157 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    .margin-form-control {
+        margin: 2px;
+    }
+</style>
+<div class="col-md-12 col-lg-12">
+    <div class="block block-rounded mt-5">
+        <div class="block-content">
+            <div class="row">
+                <div class="col-md-5"></div>
+                <div class="col-5">
+                    <h3>Email Template</h3>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row align-items-center col-md-12">
+                    <div class="col-md-12 row margin-form-control">
+                        <label class="col-md-3" for="email">Email Type</label>
+                        <div class="col-md-9 row">
+                            <button id="NewSignup" class="btn  btn-rounded btn-success btn-md-2 mb-3">New Signup</button>
+                            <button id="NewContact" class="btn btn-rounded btn-light btn-md-2 mb-3" style="margin-left:3px">New Contact</button>
+                        </div>
+                    </div>
+                    <div class="col-md-12 row margin-form-control">
+                        <label class="col-md-3" for="email">CC</label>
+                        <input type="text" class="form-control col-md-9" placeholder="" id="CC">
+                    </div>
+                    <div class="col-md-12 row margin-form-control">
+                        <label class="col-md-3" for="email">BCC</label>
+                        <input type="text" class="form-control col-md-9" placeholder="" id="BCC">
+                    </div>
+                    <div class="col-md-12 row margin-form-control">
+                        <label class="col-md-3">
+                            Tags
+                        </label>
+                        <div class="col-md-9 row">
+                            <button onclick="addfirstname()" class="btn btn-dark text-uppercase font-weight-bold">firstname</button>
+                            <button onclick="addsurname()" class="btn btn-dark text-uppercase font-weight-bold" style="margin-left:3px">surname</button>
+                            <button onclick="addplanname()" class="btn btn-dark text-uppercase font-weight-bold" style="margin-left:3px">planname</button>
+                        </div>
+                    </div>
+                    <div class="col-md-12 row margin-form-control">
+                        <label class="col-md-3" for="email">Subject</label>
+                        <input type="text" class="form-control col-md-9" placeholder="" id="Subject">
+                    </div>
+                    <div class="col-md-12 row margin-form-control">
+                        <label class="col-md-3" for="email">Body</label>
+                        <textarea name="Body" rows="10" class="col-md-9" id="body" form="usrform"></textarea>
+                    </div>
+                    <div class="col-md-12 row margin-form-control">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-9 row">
+                            <button id="test" onclick="testEmail()" class="btn btn-primary btn-pumpkin btn-rounded font-weight-bold col-md-3" style="margin-bottom:20px; margin-top:20px;float:right">Test email</button>
+                            <div class="col-md-6"></div>
+                            <button id="save" onclick="saveEmail()" class="btn btn-primary btn-pumpkin btn-rounded font-weight-bold col-md-3" style="margin-bottom:20px; margin-top:20px;float:right">Save email</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <input id="hiddenType" type="text" hidden="hidden" value="NewSignup" />
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.toast('Please wait: Loading Email template.');
+            getEmailTemplate('NewSignup');
+            $('#NewSignup').click(function ()
+            {
+                $.toast('Please wait: Loading Email template.');
+                getEmailTemplate('NewSignup');
+                $('#NewSignup').removeClass('btn-light');
+                $('#NewSignup').addClass('btn-success');
+                $('#NewContact').removeClass('btn-success');
+                $('#NewContact').addClass('btn-light');
+            });
+            $('#NewContact').click(function () {
+                $.toast('Please wait: Loading Email template.');
+                getEmailTemplate('NewContact');
+                $('#NewContact').removeClass('btn-light');
+                $('#NewContact').addClass('btn-success');
+                $('#NewSignup').removeClass('btn-success');
+                $('#NewSignup').addClass('btn-light');
+            });
+            
+        });
+        function getEmailTemplate(id) {
+            $('#hiddenType').val(id);
+            $.get('/EmailTemplate/GetEmail?type=' + $('#hiddenType').val(),
+                function (data) {
+                    if (data != '' && data != null) {
+                        $('#Subject').val(data.subject);
+                        $('#CC').val(data.sendCC);
+                        $('#BCC').val(data.sendBCC);
+                        $('#body').val(data.body);
+                        $('input[name="emailTemplate"]:checked').val(data.Type);
+                    }
+                    else {
+                        $.toast('Error in getting Email template.');
+                    }
+                });
+        }
+
+        function addfirstname() {
+            var body = $('#body').val();
+            $('#body').val(body + '#firstname#');
+        }
+
+        function addsurname() {
+            var body = $('#body').val();
+            $('#body').val(body + '#surname#');
+        }
+
+        function addplanname() {
+            var body = $('#body').val();
+            $('#body').val(body + '#planname#');
+        }
+
+        function testEmail() {
+            $.post("/EmailTemplate/TestEmail",
+                {
+                    Subject: $('#Subject').val(),
+                    SendCC: $('#CC').val(),
+                    SendBCC: $('#BCC').val(),
+                    Body: $('#body').val(),
+                    Type: $('#hiddenType').val()
+                },
+                function (data) {
+                    $.toast(data.message);
+                });
+        }
+        function saveEmail() {
+            $.post("/EmailTemplate/SaveEmail",
+                {
+                    Subject: $('#Subject').val(),
+                    SendCC: $('#CC').val(),
+                    SendBCC: $('#BCC').val(),
+                    Body: $('#body').val(),
+                    Type: $('#hiddenType').val()
+                },
+                function (data) {
+                    $.toast(data.message);
+                });
+        }
+    </script>
+}

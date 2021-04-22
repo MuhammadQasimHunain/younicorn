@@ -1,0 +1,59 @@
+﻿@model YounicornApp.Web.ApiModels.ProviderItemDTO
+@{ Layout = ""; }
+
+
+@using (Html.BeginForm("Save", "Provider", FormMethod.Post, new { id = "popupForm", enctype = "multipart/form-data" }))
+{
+    if (Model != null && Model.Id > 0)
+    {
+@Html.HiddenFor(a => a.Id) }
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mx-auto">
+            <form>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label>ISP Name</label>
+                        @Html.TextBoxFor(a => a.Ispname, new { @class = "form-control ISP Rating" })
+                        @Html.ValidationMessageFor(a => a.Ispname)
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Display Name</label>
+                        @Html.TextBoxFor(a => a.Displayname, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(a => a.Displayname)
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label>ISP Rating</label>
+                        @Html.TextBoxFor(a => a.Isprating, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(a => a.Isprating)
+                    </div>
+                    <div class="col-sm-6">
+                        <label>Logo</label>
+                        @Html.TextBoxFor(a => a.LogoUrl, new { @class = "form-control", @readonly = "readonly" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-6">
+                        <label>Logo</label><br />
+                        @if (Model != null && Model.Id > 0)
+                        {
+                            if (!string.IsNullOrEmpty(Model.LogoUrl))
+                            {
+        <img src="~/img/provider/@Model.LogoUrl" class="pro-image" height="100" width="170" asp-append-version="true" />}
+}
+                    </div>
+                    <div class="col-sm-6">
+                        <input asp-for="LogoFile" />
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <button type="submit" value="Save" class="mt-18 btn btn-primary float-right btn-dark-tangerine btn-rounded text-uppercase font-weight-bold w-50">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>}

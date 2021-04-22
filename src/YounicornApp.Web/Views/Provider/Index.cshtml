@@ -1,0 +1,38 @@
+﻿@model IEnumerable<YounicornApp.Web.ApiModels.ProviderItemDTO>
+
+@{ ViewData["Title"] = "Index";
+                Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; }
+<nav class="breadcrumb">
+    <div class="container">
+        <a class="breadcrumb-item" href="/">Home</a>
+
+        <a class="breadcrumb-item active">Provider</a>
+
+
+    </div>
+</nav>
+<div style="width:90%; margin:0 auto" class="tablecontainer">
+    <div class="heading-title">
+        <h2>
+            Provider Info / ISP Details
+        </h2>
+    </div>
+    <a class="popup btn btn-primary btn-dark-tangerine btn-rounded" href="/Provider/Save/0" style="margin-bottom:20px; margin-top:20px;float:right">Add New Provider</a>
+    <table id="myDatatable">
+        <thead>
+            <tr>
+                <th>ISP ID</th>
+                <th>ISP Name</th>
+                <th>Display Name</th>
+                <th>ISP Rating</th>
+                <th>Action</th>
+                @*<th>Offers</th>
+                    <th>Delete</th>*@
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts {
+    <script src="~/js/provider.js" asp-append-version="true"></script>
+}

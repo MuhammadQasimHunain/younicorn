@@ -1,0 +1,187 @@
+﻿@model YounicornApp.Web.ApiModels.IspOfferItemDTO
+@{
+    ViewData["Title"] = "SignUp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- ======= Hero Section ======= -->
+<input type="hidden" id="hidOfferId" value="@Model.Id" />
+<section id="hero" class="d-flex align-items-center sign-up">
+    <div class="container position-relative text-center text-lg-left" data-aos="zoom-in" data-aos-delay="100">
+        <div class="hero-text">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <form class="mt-4 mb-3">
+                        <div class="row align-items-end justify-content-center justify-content-md-between">
+                            <div class="col-12 col-md-auto">
+                                <div class="position-relative bg-pumpkin form-control d-flex align-items-center mb-3 icon-group icon-left icon-right">
+                                    <span class="icon bg-white text-pumpkin">1</span>
+                                    <input type="text" class="col text-white bg-pumpkin" id="address" placeholder="Enter Your Address" name="email">
+                                    <button class="icon right bg-white text-pumpkin" type="submit"><span class="icofont-search"></span></button>
+                                </div>
+                            </div>
+
+                            <div class="col-auto">
+                                <button class="btn bg-pumpkin text-white btn-rounded btn-block mb-3 icon-group icon-left" type="submit"><span class="icon">2</span> Compare Plans</button>
+                            </div>
+
+                            <div class="col-auto">
+                                <button class="btn bg-white text-pumpkin btn-rounded btn-block active mb-2 icon-group icon-left" type="submit"><span class="icon">3</span> Get Great Internet</button>
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-12 col-md-12">
+                    <h2 class="text-pumpkin text-center text-uppercase font-weight-bold">Get The Best Internet For You</h2>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-7">
+                <div class="block block-rounded mt-5 mb-0">
+                    <div class="block-content p-lg-5 px-4 py-5">
+                        <h3 class="text-pumpkin text-center text-uppercase font-weight-bold mb-4">Sign Up</h3>
+
+                        <form>
+                            <div class="form-group">
+                                <div class="row align-items-center mb-4">
+                                    <div class="col-12 col-sm text-left">
+                                        <label class="" for="email">First Name</label>
+                                    </div>
+                                    <div class="col-12 col-sm-7">
+                                        <input type="text" class="form-control" placeholder="" id="txtFirstName">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row align-items-center mb-4">
+                                    <div class="col-12 col-sm text-left">
+                                        <label class="" for="email">Last Name</label>
+                                    </div>
+                                    <div class="col-12 col-sm-7">
+                                        <input type="text" class="form-control" placeholder="" id="txtLastName">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row align-items-center mb-4">
+                                    <div class="col-12 col-sm text-left">
+                                        <label class="" for="email">Email Address</label>
+                                    </div>
+                                    <div class="col-12 col-sm-7">
+                                        <input type="email" class="form-control" placeholder="" id="txtEmail">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row align-items-center mb-4">
+                                    <div class="col-12 col-sm text-left">
+                                        <label class="" for="pwd">Phone</label>
+                                    </div>
+                                    <div class="col-12 col-sm-7">
+                                        <input type="text" class="form-control" placeholder="" id="txtPhone">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="center mt-5">
+                               
+                                <button type="submit" class=" btn btn-success btn-rounded text-uppercase font-weight-bold get-internet sign-up">Lets Get Great Internet</button>
+                               </div>
+                                <p id="p-Msg" style="display:none;" class="alert alert-secondary small mt-3 mb-0 text-success">
+                                  Thank you for selecting <span id="spanOfferName"></span> from <span id="spanIspName"></span>.<br /><br />
+                                   A Younicorn agent will soon be in touch to update you on the sign-up progress and to
+                                    ensure you have everything you need. In the meantime,
+                                    sit back and relax while we get great Internet for you.<br /><br />
+                                    Regards<br />
+                                    The Sign-Up Team.
+
+                                </p>
+                            
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-6 col-lg-5">
+                <div class="block block-rounded mt-5 mb-0 plan-box">
+                    <div class="block-content">
+                        <div class="row">
+                            <div class="col"></div>
+                            <div class="col-7 text-center">
+                                <img src="assets/img/provider/@Html.DisplayFor(item => item.Isp.LogoUrl)" alt="" class="img-fluid mb-4" />
+                            </div>
+                            <div class="col"></div>
+                        </div>
+
+                        <div class="row justify-content-center align-items-center d-none">
+                            <div class="col-auto">
+                                <button class="btn btn-pumpkin btn-rounded btn-sm icon-group icon-right" type="submit">Select Plan <span class="icon right"><i class="icofont-arrow-right"></i></button> &nbsp;&nbsp;
+                            </div>
+                            <div class="col-auto">
+                                <h2 class="plan-price text-dark-tangerine mb-0"><sup><small>$</small></sup>99<sup><small>/mth</small></sup></h2>
+                            </div>
+                        </div>
+                        <h5 class="text-dark-tangerine">This plan includes</h5>
+
+                        <table class="plan-meta p-0">
+                            <tr>
+                                <td class="text-left text-dark-tangerine"><i class="fa fa-heart"></i>&nbsp;&nbsp;Favourite</td>
+                                <td class="text-right pr-1"><i class="fa fa-heart text-pumpkin"></i></td>
+                                <td class="text-right pl-1">@Html.DisplayFor(item => item.Favourite)</td>
+
+                            </tr>
+                            <tr>
+                                <td class="text-left text-dark-tangerine"><i class="fa fa-star"></i>&nbsp;&nbsp;Rating</td>
+                                <td class="text-right pr-1">
+                                    @foreach (var i in Enumerable.Range(0, Convert.ToInt32(Math.Truncate(Convert.ToDecimal(Model.Offerrating)))))
+                                    {
+                                        <i class="fa fa-star text-dark-tangerine"></i>
+                                    }
+                                    @if (((Model.Offerrating % 1) * 100) > 0)
+                                    {
+                                        <i class="fa fa-star-half text-dark-tangerine"></i>
+                                    }
+                                    (@Html.DisplayFor(item => item.Offerrating))
+                                </td>
+                                <td class="text-right pl-1"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left text-dark-tangerine"><i class="fas fa-dollar-sign"></i>&nbsp;&nbsp;Price</td>
+                                <td class="text-right pr-1">$@Html.DisplayFor(item => item.Pricemonth)/mth</td>
+                                <td class="text-right pl-1"><img src="assets/img/tick.png" alt="" /></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left text-dark-tangerine"><i class="fas fa-dollar-sign"></i>&nbsp;&nbsp;Price 12 Months</td>
+                                <td class="text-right pr-1">$@Html.DisplayFor(item => item.Priceannual)</td>
+                                <td class="text-right pl-1"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left text-dark-tangerine"><i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp;Speed</td>
+                                <td class="text-right pr-1">@Html.DisplayFor(item => item.Speed)/500</td>
+                                <td class="text-right pl-1"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-left text-dark-tangerine"><i class="fas fa-database"></i>&nbsp;&nbsp;Data</td>
+                                <td class="text-right pr-1">@Html.DisplayFor(item => item.Data)</td>
+                                <td class="text-right pl-1"></td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section><!-- End Hero -->
+@section Scripts {
+    <script src="~/js/signup.js" asp-append-version="true"></script>
+}

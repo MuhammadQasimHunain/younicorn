@@ -1,0 +1,235 @@
+﻿@model YounicornApp.Web.ApiModels.IspOfferItemDTO
+@{ Layout = ""; }
+
+
+@using (Html.BeginForm("Save", "IspOffer", FormMethod.Post, new { id = "popupForm" }))
+{
+    if (Model != null && Model.Id > 0)
+    {@Html.HiddenFor(a => a.Id) }
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mx-auto textbox">
+            <form>
+                <div class="form-group row">
+                    <div class="col-sm-6 row">
+                        <div class="col-sm-4">
+                            <label>Offer ID</label>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(a => a.Ispid, new { @class = "form-control numerictext", @readonly = "readonly" })
+                        </div>
+                    </div>
+
+                    @if (Model != null && Model.Id > 0)
+                    {
+    <div class="col-sm-6 row">
+        <div class="col-sm-4">
+            <label>Offer Id</label>
+        </div>
+        <div class="col-sm-8">
+            @Html.TextBoxFor(a => a.Id, new { @class = "form-control numerictext", @readonly = "readonly" })
+        </div>
+    </div>}
+
+                    <div class="col-sm-6 row">
+                        <div class="col-sm-4">
+                            <label>Offer Name</label>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(a => a.Offername, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(a => a.Offername)
+                        </div>
+                    </div>
+                    <div class="col-sm-6 row">
+                        <div class="col-sm-4">
+                            <label>Display Name</label>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(a => a.Displayname, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(a => a.Displayname)
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 row">
+                        <div class="col-sm-4">
+                            <label>Speed</label>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(a => a.Speed, new { @class = "form-control numerictext" })
+                            @Html.ValidationMessageFor(a => a.Speed)
+                        </div>
+                    </div>
+                    <div class="col-sm-6 row">
+                        <div class="col-sm-4">
+                            <label>Data</label>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(a => a.Data, new { @class = "form-control numerictext" })
+                            @Html.ValidationMessageFor(a => a.Data)
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 row">
+                        <div class="col-sm-4">
+                            <label>Price month</label>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(a => a.Pricemonth, new { @class = "form-control numerictext" })
+                            @Html.ValidationMessageFor(a => a.Pricemonth)
+                        </div>
+                    </div>
+                    <div class="col-sm-6 row">
+                        <div class="col-sm-4">
+                            <label>Price annual</label>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(a => a.Priceannual, new { @class = "form-control numerictext" })
+                            @Html.ValidationMessageFor(a => a.Priceannual)
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 row">
+                        <div class="col-sm-4">
+                            <label>Bundle details</label>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(a => a.Bundledetails, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(a => a.Bundledetails)
+                        </div>
+                    </div>
+                    <div class="col-sm-6 row">
+                        <div class="col-sm-4">
+                            <label>Bullet 1</label>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(a => a.Bullet1, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(a => a.Bullet1)
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 row">
+                        <div class="col-sm-4">
+                            <label>Bullet 2</label>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(a => a.Bullet2, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(a => a.Bullet2)
+                        </div>
+                    </div>
+                    <div class="col-sm-6 row">
+                        <div class="col-sm-4">
+                            <label>Bullet 3</label>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(a => a.Bullet3, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(a => a.Bullet3)
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 row">
+                        <div class="col-sm-4">
+                            <label>Bullet 4</label>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(a => a.Bullet4, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(a => a.Bullet4)
+                        </div>
+                    </div>
+                    <div class="col-sm-6 row">
+                        <div class="col-sm-4">
+                            <label>Bullet 5</label>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(a => a.Bullet5, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(a => a.Bullet5)
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 row">
+                        <div class="col-sm-4">
+                            <label>Discount details</label>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(a => a.Discountdetails, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(a => a.Discountdetails)
+                        </div>
+                    </div>
+                    <div class="col-sm-6 row">
+                        <div class="col-sm-4">
+                            <label>Installation cost</label>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(a => a.Installationcost, new { @class = "form-control numerictext" })
+                            @Html.ValidationMessageFor(a => a.Installationcost)
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 row">
+                        <div class="col-sm-4">
+                            <label>Modem cost</label>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(a => a.Modemcost, new { @class = "form-control numerictext" })
+                            @Html.ValidationMessageFor(a => a.Modemcost)
+                        </div>
+                    </div>
+                    <div class="col-sm-6 row">
+                        <div class="col-sm-4">
+                            <label>Termination fee</label>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(a => a.Terminationfee, new { @class = "form-control numerictext" })
+                            @Html.ValidationMessageFor(a => a.Terminationfee)
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6 row">
+                        <div class="col-sm-4">
+                            <label>Favourite</label>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(a => a.Favourite, new { @class = "form-control numerictext" })
+                            @Html.ValidationMessageFor(a => a.Favourite)
+                        </div>
+                    </div>
+                    <div class="col-sm-6 row">
+                        <div class="col-sm-4">
+                            <label>Offer Rating</label>
+                        </div>
+                        <div class="col-sm-8">
+                            @Html.TextBoxFor(a => a.Offerrating, new { @class = "form-control numerictext" })
+                            @Html.ValidationMessageFor(a => a.Offerrating)
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row checkboxlist text-center">
+                    <div class="col-sm-1">
+                        <label for="Adsl">ADSL</label>
+                        @Html.CheckBoxFor(a => a.Adsl, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(a => a.Offerrating)
+                    </div>
+                    <div class="col-sm-1">
+                        <label for="Vdsl">VDSL</label>
+                        @Html.CheckBoxFor(a => a.Vdsl, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(a => a.Offerrating)
+                    </div>
+                    <div class="col-sm-1">
+                        <label for="Fibre">Fibre</label>
+                        @Html.CheckBoxFor(a => a.Fibre, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(a => a.Fibre)
+                    </div>
+                    <div class="col-sm-1">
+                        <label for="Fibreplus">Fibreplus</label>
+                        @Html.CheckBoxFor(a => a.Fibreplus, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(a => a.Fibreplus)
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <button type="submit" value="Save" class="mt-18 btn btn-primary float-right btn-dark-tangerine btn-rounded text-uppercase font-weight-bold w-50">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>}

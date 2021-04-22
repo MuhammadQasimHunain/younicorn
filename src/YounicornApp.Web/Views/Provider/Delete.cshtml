@@ -1,0 +1,38 @@
+﻿@model YounicornApp.Web.ApiModels.ProviderItemDTO
+@{ Layout = ""; }
+
+@using (Html.BeginForm("Delete", "Provider", FormMethod.Post, new { id = "popupForm" }))
+{
+@Html.HiddenFor(a => a.Id)
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 mx-auto">
+                            <form>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label>ISP Name</label>
+                                        <p>@Model.Ispname</p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Display Name</label>
+                                        <p>@Model.Displayname</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <label>Isprating</label>
+                                        <p>@Model.Isprating</p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Logo</label>
+                                        <p>@Model.LogoUrl</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit" value="Delete" class="btn btn-primary px-4 float-right btn-dark-tangerine btn-rounded">Delete</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>}

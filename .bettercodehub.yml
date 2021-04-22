@@ -1,0 +1,2 @@
+exclude:
+- .*/src\YounicornApp.Web\wwwroot\lib\**\*

@@ -1,0 +1,119 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    .margin-form-control {
+        margin: 10px;
+    }
+</style>
+<div class="row margin-form-control">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-11 row">
+        <div class="col-md-4 row">
+            <div class="col-md-3">
+                <label>Date</label>
+            </div>
+            <div class="col-md-9">
+                <input id="filterDateFrom" type="date" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-4 row">
+            <div class="col-md-3">
+                <label>Provider</label>
+            </div>
+            <div class="col-md-9">
+                <select class="form-control" id="filterIspDetails">
+                    <option id="select">select</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4 row">
+            <div class="col-md-3">
+                <label>Plan</label>
+            </div>
+            <div class="col-md-9">
+                <select class="form-control" id="filterIspOffers">
+                    <option id="select">select</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row margin-form-control">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-11 row">
+        <div class="col-md-4 row">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-9">
+                <input id="filterDateTo" type="date" class="form-control" />
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-12" style="margin-left: 75px;">
+                <button id="LoadData" class="btn btn-pumpkin btn-rounded col-md-9">Load Data</button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-12" style="margin-left: 45px;">
+                <button id="clearFilters" class="btn btn-pumpkin btn-rounded col-md-9">Clear filters</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-8">
+        <div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-6 row">
+        <div class="col-md-6">
+            <table class="table table-bordered">
+                <tr><th colspan="2">Lost to other Providers</th></tr>
+                <tr><td>Orcon - Plan C</td><td>6</td></tr>
+                <tr><td>Orcon - Plan F</td><td>2</td></tr>
+                <tr><td>Orcon - Plan A</td><td>5</td></tr>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-bordered">
+                <tr><th>Price</th><th>Speed</th><th>Freedom</th></tr>
+                <tr><td>X</td><td>X</td><td></td></tr>
+                <tr><td></td><td>X</td><td>X</td></tr>
+                <tr><td></td><td></td><td>X</td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+    <script src="~/js/dashboard.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //$.toast('Getting chart values');
+            getAnalyticsValues();
+            getISP();
+            getISPOffers();
+            $('#LoadData').click(function () { getAnalyticsValues(); });
+            $('#clearFilters').click(function () { clearFilters(); })
+
+        });
+    </script>
+}

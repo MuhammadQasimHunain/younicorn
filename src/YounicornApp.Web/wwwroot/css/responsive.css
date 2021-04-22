@@ -1,0 +1,108 @@
+
+
+
+@media screen and  (max-width: 575px){
+  html,body{
+    font-size: 12px;
+  }
+
+  #hero {
+    height: auto;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media screen and (min-width: 576px) {  
+ 
+}
+ 
+@media screen and (max-width:768px){
+  [data-aos-delay]{
+    transition-delay:0 !important;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) The navbar toggle appears at this breakpoint */
+@media screen and  (min-width: 768px) {  
+ 
+}
+
+@media screen and (max-width: 991px){
+  html,body{
+    font-size: 13px;
+  }
+
+  .navbar-nav-right li + li {
+    padding-left: 7px;
+  }
+
+  .plan-meta tr td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media screen and (min-width: 992px) { 
+  html,body{
+    font-size: 14px;
+  }
+  .priorities{
+    left: -80px;
+  }
+}
+ 
+@media screen and (max-width: 1199px){
+  #header .logo img {
+    max-height: 3rem;
+  }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media screen and (min-width: 1200px) {  
+  html,body{
+    font-size: 16px;
+  }
+  .priorities{
+    left: -85px;
+  }
+}
+
+@media screen and (max-width: 1366px) {
+  .nav-menu .drop-down .drop-down ul {
+    left: -90%;
+  }
+  .nav-menu .drop-down .drop-down:hover > ul {
+    left: -100%;
+  }
+  .nav-menu .drop-down .drop-down > a:after {
+    content: "\ea9d";
+  }
+}
+
+@media screen and (min-width:1600px){
+  html,body{
+    font-size: 20px;
+  }
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+      max-width: 1440px;
+  }
+  .priorities{
+    left: -100px;
+  }
+  
+}
+
+
+@media screen and (min-width:1920px){
+  html,body{
+    font-size: 24px;
+  }
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+      max-width: 1640px;
+  }
+  .priorities{
+    left: -118px;
+  }
+}
+

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<YounicornApp.Web.ApiModels.IspOfferItemDTO>
+
+@{ ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; }
+<style>
+
+    .ui-dialog .ui-dialog-titlebar {
+        padding: 10px;
+        position: relative;
+    }
+
+    table.dataTable tbody th, table.dataTable tbody td {
+        padding: 8px 21px;
+    }
+</style>
+<nav class="breadcrumb">
+    <div class="container">
+        <a class="breadcrumb-item" href="/">Home</a>
+        <a class="breadcrumb-item" href="/Provider/">Provider</a>
+        <a class="breadcrumb-item active">ISP Offer</a>
+    </div>
+</nav>
+<div style="width:90%; margin:0 auto" class="tablecontainer">
+
+    <input type="hidden" id="hidProviderId" value="@ViewBag.ProviderId" />
+    <div class="heading-title">
+        <h2>
+            ISP Offers
+        </h2>
+    </div>
+    <a class="popup btn btn-primary btn-dark-tangerine btn-rounded" href="/IspOffer/Save/0?pId=@ViewBag.ProviderId" style="margin-bottom:20px; margin-top:20px;float:right">Add New Offer</a>
+    <table id="myDatatable">
+        <thead>
+            <tr>
+                <th>
+                    Offer ID
+                </th>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Display
+                </th>
+                <th>
+                    Speed
+                </th>
+                <th>
+                    Data
+                </th>
+                <th>
+                    $Month
+                </th>
+                <th>
+                    $Annual
+                </th>
+                <th>Action</th>
+
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts {
+    <script src="~/js/offers.js" asp-append-version="true"></script>
+}

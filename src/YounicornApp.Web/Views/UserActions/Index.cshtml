@@ -1,0 +1,209 @@
+﻿@model IEnumerable<YounicornApp.Web.ApiModels.UserActionDTO>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-5"></div>
+    <div class="col-5">
+        <h3>User Actions</h3>
+    </div>
+</div>
+<div style="width:90%; margin:0 auto" class="tablecontainer">
+    <table class="dataTable no-footer" >
+        <thead>
+            <tr>
+                <th style="width: 95px;">
+                    <input style="width: 95px;" id="filterActionId" placeholder="ActionID" type="number" />
+                </th>
+                <th style="width: 167px;">
+                    <input style="width: 167px;" id="filterActionDateFrom" placeholder="Action Date" type="date" />
+                </th>
+                <th style="width: 139px;">
+                    <input style="width: 139px;" id="filterUserAddress" placeholder="User Address" />
+                </th>
+                <th style="width: 183px;">
+                    <select style="width: 183px;" id="filterType">
+                        <option id="select">select</option>
+                    </select>
+                </th>
+                <th style="width: 146px;">
+                    <input style="width: 146px;" id="filterDetails" placeholder="Action Details" />
+                </th>
+                <th style="width: 111px;">
+                    <select style="width: 111px;" id="filterIspDetails">
+                        <option id="select">select</option>
+                    </select>
+                </th>
+                <th style="width: 76px;">
+                    <select style="width: 76px;" id="filterIspOffers">
+                        <option id="select">select</option>
+                    </select>
+                </th>
+                <th style="width: 58px;">
+                    <a class="popup" onclick="clearFilters()">Clear</a>
+                </th>
+            </tr>
+            <tr>
+                <th style="width: 95px;">
+                </th>
+                <th style="width: 167px;">
+                    <input style="width: 167px;" id="filterActionDateTo" placeholder="Action Date" type="date" />
+                </th>
+                <th style="width: 139px;">
+                </th>
+                <th style="width: 183px;">
+                </th>
+                <th style="width: 146px;">
+                </th>
+                <th style="width: 111px;">
+                </th>
+                <th style="width: 76px;">
+                </th>
+                <th style="width: 58px;">
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<div style="width:90%; margin:0 auto" class="tablecontainer">
+    <table id="myDatatable">
+        <thead>
+            <tr>
+                <th>Action Id</th>
+                <th>Action Date</th>
+                <th>User Address</th>
+                <th>Type</th>
+                <th>Action Details</th>
+                <th>ISP Details</th>
+                <th>Offers</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@section Scripts {
+    <script src="~/js/userActions.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.toast('Please wait: Loading Data.');
+            actionDateFilter();
+            getISPOffers();
+            getISP();
+            getFilterTypes();
+        });
+        $.fn.dataTable.ext.search.push(
+            function (settings, data, dataIndex) {
+                var min = Date.parse($('#filterActionDateFrom').val());
+                var max = Date.parse($('#filterActionDateTo').val());
+                var condition = false;
+                var actionIdData = parseInt(data[0]);
+                var time = Date.parse(data[1]); // use data for the age column
+                var userAddressData = data[2];
+                var typeData = data[3];
+                var detailsData = data[4];
+                var ispDetailData = data[5];
+                var ispOffersData = data[6];
+                var actionID = $('#filterActionId').val();
+                var userAddress = $('#filterUserAddress').val();
+                var type = $('#filterType').val();
+                var details = $('#filterDetails').val();
+                var ispDetails = $('#filterIspDetails').val();
+                var ispOffers = $('#filterIspOffers').val();
+
+                if ((isNaN(min) && isNaN(max)) ||
+                    (isNaN(min) && time <= max) ||
+                    (min <= time && isNaN(max)) ||
+                    (min <= time && time <= max)) {
+                    condition = true;
+                }
+                if (ispOffers != "select") {
+                    condition = condition && (ispOffers == ispOffersData);
+                }
+                if (ispDetails != "select") {
+                    condition = condition && (ispDetails == ispDetailData);
+                }
+                if (actionID != "") {
+                    condition = condition && (actionID == actionIdData && !isNaN(actionID));
+                }
+                if (userAddress != "") {
+                    condition = condition && userAddressData.startsWith(userAddress);
+                }
+                if (type != "select") {
+                    condition = condition && (type == typeData);
+                }
+                if (details != "") {
+                    condition = condition && detailsData.startsWith(details);
+                }
+                return condition;
+            }
+        );
+        function actionDateFilter() {
+            var table = $('#myDatatable').DataTable();
+            $('#filterActionDateFrom').change(function () { table.draw(); });
+            $('#filterActionDateTo').change(function () { table.draw(); });
+            $('#filterActionId').keyup(function () { table.draw(); });
+            $('#filterUserAddress').keyup(function () { table.draw(); });
+            $('#filterDetails').keyup(function () { table.draw(); });
+            $('#filterType').change(function () { table.draw(); });
+            $('#filterIspDetails').change(function () { table.draw(); });
+            $('#filterIspOffers').change(function () { table.draw(); });
+        }
+        function clearFilters() {
+            var table = $('#myDatatable').DataTable();
+            $('#filterActionDateFrom').val('');
+            $('#filterActionDateTo').val('');
+            $('#filterActionId').val('');
+            $('#filterUserAddress').val('');
+            $('#filterDetails').val('');
+            $('#filterType').val('select');
+            $('#filterIspDetails').val('select');
+            $('#filterIspOffers').val('select');
+            table.draw();
+        }
+        function getISP() {
+            $.get('/UserActions/GetISP',
+                function (data) {
+                    if (data.length > 1 && data != null) {
+                        for (var i = 0, l = data.length; i < l; i++) {
+                            $('#filterIspDetails').append($('<option id="' + data[i].id + '">' + data[i].value + '</option>'));
+                        }
+                    }
+                    else {
+                        $.toast('Error in getting Options.');
+                    }
+                });
+        }
+        function getFilterTypes() {
+            $.get('/UserActions/GetActionType',
+                function (data) {
+                    if (data.length > 1 && data != null) {
+                        for (var i = 0, l = data.length; i < l; i++) {
+                            $('#filterType').append($('<option id="' + data[i].value + '">' + data[i].value + '</option>'));
+                        }
+                    }
+                    else {
+                        $.toast('Error in getting Options.');
+                    }
+                });
+
+        }
+        function getISPOffers() {
+            $.get('/UserActions/GetISPOffer',
+                function (data) {
+                    if (data.length > 1 && data != null) {
+
+                        for (var i = 0, l = data.length; i < l; i++) {
+                            $('#filterIspOffers').append($('<option id="' + data[i].id + '">' + data[i].value + '</option>'));
+                        }
+                    }
+                    else {
+                        $.toast('Error in getting Options.');
+                    }
+                });
+        }
+
+    </script>
+}

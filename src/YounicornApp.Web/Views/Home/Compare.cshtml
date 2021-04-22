@@ -1,0 +1,198 @@
+﻿@model IEnumerable<YounicornApp.Web.ApiModels.IspOfferItemDTO>
+@{
+    ViewData["Title"] = "Compare Plans";
+}
+
+<!-- ======= Hero Section ======= -->
+<div id="plan_page">
+    <section id="hero" class="compare-plans d-flex align-items-center">
+        <div class="priorities bg-pumpkin" data-spy="affix" data-offset-top="197">
+            <button type="button" class="toggle-button"></button>
+            <p class="text-center text-white">Priorities</p>
+            <div class="row no-gutters">
+                <div class="col-6 text-white align-self-center">1st</div>
+                <div class="col-6"><a href="" class="d-block bg-white p-2 rounded-left"><i class="fa fa-dollar-sign"></i></a></div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-6 text-white align-self-center">2nd</div>
+                <div class="col-6"><a href="" class="d-block bg-white p-2 rounded-left"><i class="fas fa-tachometer-alt"></i></a></div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-6 text-white align-self-center">3rd</div>
+                <div class="col-6"><a href="" class="d-block bg-white p-2 rounded-left"><i class="fa fa-star"></i></a></div>
+            </div>
+        </div>
+        <div class="container position-relative text-center text-lg-left" data-aos="zoom-in" data-aos-delay="100">
+            <div class="hero-text">
+                <div class="row">
+                    <div class="col-lg-9 col-md-12">
+                        <form class="mt-4 mb-3">
+                            <div class="row no-gutters align-items-center justify-content-center">
+                                <div class="col-auto col-md">
+                                    <div class="position-relative bg-pumpkin form-control d-flex align-items-center mb-3 icon-group icon-left icon-right">
+                                        <span class="icon bg-white text-pumpkin">1</span>
+                                        <input type="text" class="col bg-pumpkin text-white px-0" id="address" placeholder="Enter Your Address" value=@ViewBag.address name="">
+                                        <button class="icon right bg-white text-pumpkin" type="submit"><span class="fa fa-search"></span></button>
+                                    </div>
+                                </div>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="col-auto">
+                                    <button onclick="ComparePlan()" class="btn bg-white btn-rounded btn-block active mb-3 icon-group icon-left text-pumpkin"><span class="icon">2</span> Compare Plans</button>
+                                </div>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <div class="col-auto">
+                                    <button class="btn btn-pumpkin btn-rounded btn-block mb-3 icon-group icon-left" type="submit"><span class="icon">3</span> Get Great Internet</button>
+                                </div>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+                <div class="row align-items-center">
+                    <div class="col-lg col-md-12 fiber-type">
+                        <p class="bg-dark-tangerine p-2 rounded d-none">We have found the best deals for you! You can sort by your priorities, filter aout the not importants, tag, score and make notes as you need.</p>
+                        <button class="btn btn-success btn-rounded btn-sm mb-3" onclick="location.href='@Url.Action("SearchResult", "Home")?search=Fibre&id='+ $('#address').val()" type="submit">Fiber +</button>&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-success btn-rounded btn-sm mb-3" onclick="location.href='@Url.Action("SearchResult", "Home")?search=FibrePlus&id='+ $('#address').val()" type="submit">Fiber 100</button>&nbsp;&nbsp;&nbsp;
+                        <button class="btn bg-white text-pumpkin btn-rounded btn-sm mb-3" onclick="location.href='@Url.Action("SearchResult", "Home")?search=VDSL&id='+ $('#address').val()" type="submit">VDSL</button>&nbsp;&nbsp;&nbsp;
+                        <button class="btn bg-white text-pumpkin btn-rounded btn-sm mb-3" onclick="location.href='@Url.Action("SearchResult", "Home")?search=ADSL&id='+ $('#address').val()" type="submit">ADSL</button>
+                    </div>
+                    <div class="col-lg-auto col-md-12">
+                        <button class="btn btn-pumpkin btn-rounded btn-sm mb-3 icon-group icon-right" type="submit">Save Lists <span class="icon right bg-white text-pumpkin"><i class="fa fa-save"></i></button> &nbsp;&nbsp;
+                        <button disabled="@ViewBag.totalItems>3?true:false" class="btn btn-pumpkin btn-rounded btn-sm mb-3 icon-group icon-right" type="submit">Next 3 Providers <span class="icon right bg-white text-pumpkin"><i class="material-icons">fast_forward</i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row d-lg-none mobile-sorting">
+                <div class="col-12 col-sm"></div>
+                <div class="col-12 col-sm-auto">
+                    <form class="">
+                        <div class="form-group d-flex align-items-center my-3">
+                            <label class="text-white col-auto mb-0 px-0">Sort By </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <select class="form-control form-control-rounded">
+                                <option>Select Option</option>
+                                <option>Favourite</option>
+                                <option>Rating</option>
+                                <option>Price</option>
+                                <option>Price 12 Months</option>
+                                <option>Speed</option>
+                                <option>Data</option>
+
+                            </select>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row justify-content-center align-items-end">
+                <div class="sorting d-none d-lg-block  pb-5">
+                    <p class="mb-1">Sort</p>
+                    <ul class="mb-0 p-0">
+                        <li><a href=""><i class="fa fa-exchange-alt"></i></a></li>
+                        <li><a href=""><i class="fa fa-exchange-alt"></i></a></li>
+                        <li><a href=""><i class="fa fa-exchange-alt"></i></a></li>
+                        <li><a href=""><i class="fa fa-exchange-alt"></i></a></li>
+                        <li><a href=""><i class="fa fa-exchange-alt"></i></a></li>
+                        <li><a href=""><i class="fa fa-exchange-alt"></i></a></li>
+                    </ul>
+                    <div class="d-flex align-items-center justify-content-between opacity-0">
+                        <div class="text-center p-2 bg-white rounded-bottom">
+                            <a class="btn btn-dark-tangerine btn-rounded btn-sm icon-group icon-right px-0" type="submit">0</a>
+                        </div>
+                    </div>
+                </div>
+
+                @foreach (var item in Model.Take(3))
+                {
+                    <div class="col-md-6 col-lg-4 pb-5">
+                        <div class="block block-rounded mb-0 plan-box border-lb-0">
+                            <div class="block-content">
+                                <div class="row">
+                                    <div class="col"></div>
+                                    <div class="col-7">
+                                        <img src="~/img/provider/@Html.DisplayFor(modelItem => item.Isp.LogoUrl)" alt="" class="img-fluid plan-img mb-4" />
+                                    </div>
+                                    <div class="col"></div>
+                                </div>
+
+                                <div class="row justify-content-center align-items-centers">
+                                    <div class="col-auto">
+                                        <h3 class="text-pumpkin mb-3">@Html.DisplayFor(modelItem => item.Isp.Ispname)</h3>
+                                    </div>
+                                </div>
+
+                                <div class="row justify-content-center align-items-center">
+                                    <div class="col-12 text-center">
+                                        <h2 class="plan-price text-pumpkin mb-1"><sup><small>$</small></sup>@Html.DisplayFor(modelItem => item.Pricemonth)<sup><small>/mth</small></sup></h2>
+                                    </div>
+                                    <div class="col-12 text-center">
+                                        <a href="/Home/signup/@Html.DisplayFor(modelItem => item.Id)" class="btn btn-pumpkin btn-rounded icon-group icon-right">Select Plan <span class="icon right bg-white text-pumpkin"><i class="fa fa-angle-right"></i></a> &nbsp;&nbsp;
+                                    </div>
+
+                                </div>
+                                <p class="alert alert-secondary small mt-2 mb-0">@Html.DisplayFor(modelItem => item.Bundledetails)</p>
+                                <table class="plan-meta p-0">
+                                    <tr>
+                                        <td class="text-left text-dark-tangerine"><i class="fa fa-heart"></i>&nbsp;&nbsp;Favourite</td>
+                                        <td class="text-right pr-1"><i class="fa fa-heart text-pumpkin"></i></td>
+                                        <td class="text-right pl-1">@Html.DisplayFor(modelItem => item.Favourite)</td>
+
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left text-dark-tangerine"><i class="fa fa-star"></i>&nbsp;&nbsp;Rating</td>
+                                        <td class="text-right pr-1">
+                                            @foreach (var i in Enumerable.Range(0, Convert.ToInt32(Math.Truncate(Convert.ToDecimal(item.Offerrating)))))
+                                            {
+                                                <i class="fa fa-star text-dark-tangerine"></i>
+                                            }
+                                            @if (((item.Offerrating % 1) * 100) > 0)
+                                            {
+                                                <i class="fa fa-star-half text-dark-tangerine"></i>
+                                            }
+                                            (@Html.DisplayFor(modelItem => item.Offerrating))
+                                        </td>
+                                        <td class="text-right pl-1"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left text-dark-tangerine"><i class="fas fa-dollar-sign"></i>&nbsp;&nbsp;Price</td>
+                                        <td class="text-right pr-1">$@Html.DisplayFor(modelItem => item.Pricemonth)/mth</td>
+                                        <td class="text-right pl-1"><img src="~/img/tick.png" alt="" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left text-dark-tangerine"><i class="fas fa-dollar-sign"></i>&nbsp;&nbsp;Price 12 Months</td>
+                                        <td class="text-right pr-1">$@Html.DisplayFor(modelItem => item.Priceannual)</td>
+                                        <td class="text-right pl-1"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left text-dark-tangerine"><i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp;Speed</td>
+                                        <td class="text-right pr-1">@Html.DisplayFor(modelItem => item.Speed)/500</td>
+                                        <td class="text-right pl-1"></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-left text-dark-tangerine"><i class="fas fa-database"></i>&nbsp;&nbsp;Data</td>
+                                        <td class="text-right pr-1">@Html.DisplayFor(modelItem => item.Data)</td>
+                                        <td class="text-right pl-1"></td>
+                                    </tr>
+                                </table>
+
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between">
+                            <div class="text-center p-2 bg-white rounded-bottom">
+                                <a href="/Home/MoreInfo/@Html.DisplayFor(modelItem => item.Id)" class="more-info btn btn-dark-tangerine btn-rounded btn-sm icon-group icon-right" type="submit">More Info <span class="icon right bg-white text-dark-tangerine"><i class="icofont-arrow-right"></i></a> &nbsp;&nbsp;
+                            </div>
+                            <div class="text-center py-2 rounded-bottom">
+                                <a class="btn btn-secondary btn-rounded btn-sm icon-group icon-right float-right" type="submit">Remove <span class="icon right text-muted bg-white border"><i class="icofont-eye"></i></a> &nbsp;&nbsp;
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </section><!-- End Hero -->
+</div>
+@section Scripts {
+    <script src="~/js/compareplans.js" asp-append-version="true"></script>
+}

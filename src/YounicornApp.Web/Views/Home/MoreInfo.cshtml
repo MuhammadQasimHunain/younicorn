@@ -1,0 +1,149 @@
+﻿@model YounicornApp.Web.ApiModels.IspOfferItemDTO
+@{
+    ViewData["Title"] = "More Info";
+}
+
+<main id="main ">
+
+    <!-- ======= More Info Section ======= -->
+    <section class="d-flex align-items-center">
+        <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
+
+
+
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-6">
+                    <div class="block-rounded mt-5 mb-0 plan-box">
+                        <div class="block-content">
+                            <div class="row">
+                                <div class="col"></div>
+                                <div class="col-7 text-center">
+                                    <img src="~/img/provider/@Html.DisplayFor(item => item.Isp.LogoUrl)" alt="" class="img-fluid mb-4 plan-single-img" />
+                                </div>
+                                <div class="col"></div>
+                            </div>
+
+                            <div class="row justify-content-center align-items-centers">
+                                <div class="col-auto">
+                                    <h3 class="text-pumpkin mb-3">@Html.DisplayFor(item => item.Offername)</h3>
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-center align-items-centers">
+                                <div class="col-auto">
+                                    <h1 class="plan-price display-4 text-pumpkin mb-1 style2"><sup><small>$</small></sup>@Html.DisplayFor(item => item.Pricemonth)<sup><small>/mth</small></sup></h1>
+                                </div>
+                            </div>
+
+                            <table class="plan-meta p-0">
+                                <tr>
+                                    <td class="text-left text-pumpkin"><i class="fa fa-heart"></i>&nbsp;&nbsp;Favourite</td>
+                                    <td class="text-right pr-1"><i class="fa fa-heart text-pumpkin"></i></td>
+                                    <td class="text-right pl-1">@Html.DisplayFor(modelItem => Model.Favourite)</td>
+
+                                </tr>
+                                <tr>
+                                    <td class="text-left text-pumpkin"><i class="fa fa-star"></i>&nbsp;&nbsp;Rating</td>
+                                    <td class="text-right pr-1">
+                                        @foreach (var i in Enumerable.Range(0, Convert.ToInt32(Math.Truncate(Convert.ToDecimal(Model.Offerrating)))))
+                                        {
+                                            <i class="fa fa-star text-dark-tangerine"></i>
+                                        }
+                                        @if (((Model.Offerrating % 1) * 100) > 0)
+                                        {
+                                            <i class="fa fa-star-half text-dark-tangerine"></i>
+                                        }
+                                        (@Html.DisplayFor(modelItem => Model.Offerrating))
+                                    </td>
+                                    <td class="text-right pl-1"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left text-pumpkin"><i class="fas fa-dollar-sign"></i>&nbsp;&nbsp;Price</td>
+                                    <td class="text-right pr-1">$@Html.DisplayFor(item => item.Pricemonth)/mth</td>
+                                    <td class="text-right pl-1"><img src="~/img/tick.png" alt="" /></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left text-pumpkin"><i class="fas fa-dollar-sign"></i>&nbsp;&nbsp;Price 12 Months</td>
+                                    <td class="text-right pr-1">$@Html.DisplayFor(item => item.Priceannual)</td>
+                                    <td class="text-right pl-1"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left text-pumpkin"><i class="fas fa-tachometer-alt"></i>&nbsp;&nbsp;Speed</td>
+                                    <td class="text-right pr-1">@Html.DisplayFor(item => item.Speed)/500</td>
+                                    <td class="text-right pl-1"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-left text-pumpkin"><i class="fas fa-database"></i>&nbsp;&nbsp;Data</td>
+                                    <td class="text-right pr-1">@Html.DisplayFor(item => item.Data)</td>
+                                    <td class="text-right pl-1"></td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6 col-lg-6">
+                    <div class="block-rounded mt-5 mb-0 more-info-content">
+                        <div class="block-content p-lg-4 px-4 py-4">
+                            <h3 class="text-pumpkin mb-3">Full Offer Details</h3>
+                            <ul class="pl-4">
+                                @if (!string.IsNullOrEmpty(Model.Bullet1))
+                                {
+                                    <li>@Html.DisplayFor(item => item.Bullet1)</li>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.Bullet2))
+                                {
+                                    <li>@Html.DisplayFor(item => item.Bullet2)</li>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.Bullet3))
+                                {
+                                    <li>@Html.DisplayFor(item => item.Bullet3)</li>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.Bullet4))
+                                {
+                                    <li>@Html.DisplayFor(item => item.Bullet4)</li>
+                                }
+                                @if (!string.IsNullOrEmpty(Model.Bullet5))
+                                {
+                                    <li>@Html.DisplayFor(item => item.Bullet5)</li>
+                                }
+                            </ul>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="my-3">
+                                        <p class="mb-2"><b>Other Fees & Charges</b></p>
+                                        <div class="d-flex align-items justify-content-between">
+                                            <p class="mb-0">-Installation cost:</p>
+                                            <p class="mb-0">$@Html.DisplayFor(item => item.Installationcost)</p>
+                                        </div>
+                                        <div class="d-flex align-items justify-content-between">
+                                            <p class="mb-0">-Modem cost:</p>
+                                            <p class="mb-0">$@Html.DisplayFor(item => item.Modemcost)</p>
+                                        </div>
+                                        <div class="d-flex align-items justify-content-between">
+                                            <p class="mb-0">-Termination Fee:</p>
+                                            <p class="mb-0">$@Html.DisplayFor(item => item.Terminationfee)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="text-center mt-3">
+                                <a class="d-block" href="#">VIEW TERMS AND CONDITIONS</a>
+                                <a href="/Home/signup/@Html.DisplayFor(item => item.Id)" class="btn btn-lg btn-pumpkin btn-rounded icon-group icon-right">Select Plan <span class="icon right bg-white text-pumpkin"><i class="fa fa-angle-right"></i></span></a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section><!-- End More Info -->
+
+</main>
+@section Scripts {
+    <script src="~/js/moreinfo.js" asp-append-version="true"></script>
+}
